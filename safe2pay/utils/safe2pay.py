@@ -1,0 +1,135 @@
+
+from safe2pay.utils import constants
+import base64
+from requests_toolbelt import MultipartEncoder
+import requests
+import logging
+import json
+import os
+import io
+from datetime import datetime
+from decimal import Decimal
+
+DEBUG = False
+SANDBOX = False
+TOKEN = ''
+SECRETKEY = ''
+
+def DebugRequest():
+    import http.client as http_client
+    http_client.HTTPConnection.debuglevel = 1
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
+    requests_log = logging.getLogger("requests.packages.urllib3")
+    requests_log.setLevel(logging.DEBUG)
+    requests_log.propagate = True
+
+
+def Safe2Pay(token, secretkey, sandbox=False, debug=False):
+    if debug:
+        DebugRequest()
+    global DEBUG
+    global SANDBOX
+    global TOKEN
+    global SECRETKEY
+    DEBUG = debug
+    SANDBOX = sandbox
+    TOKEN = token
+    SECRETKEY = secretkey
+
+
+def __headers(data=None, addHeader=None, moduleV1=None):
+    #hash = base64.b64encode(f'{PRIVATEKEY}:'.encode("utf-8")).decode("utf-8")
+    __headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8' if addHeader is None or not 'Content-Type' in addHeader else addHeader['Content-Type'],
+        'x-api-key': SECRETKEY
+    }
+    if addHeader:
+        del addHeader['Content-Type']
+        __headers = {**__headers, **addHeader}
+
+    if SANDBOX:
+        __headers['IsSandbox'] = True
+
+    return __headers
+
+
+def __Route(url, moduleV1=None):
+    return f'{constants.ROUTE_V2}{url}' if moduleV1 is None else f'{constants.ROUTE_V1.format(module=moduleV1)}{url}'
+
+
+def Get(url, data={}, addHeader=None, moduleV1=None):
+    return ValidateResponse(requests.get(__Route(url, moduleV1), params=data, headers=__headers(data, addHeader)))
+
+
+def Post(url, data, addHeader=None, moduleV1=None):
+    return ValidateResponse(requests.post(__Route(url, moduleV1), json=data, headers=__headers(data, addHeader)))
+
+
+def Put(url, data, addHeader=None, moduleV1=None):
+    return ValidateResponse(requests.put(__Route(url, moduleV1), json=data, headers=__headers(data, addHeader)))
+
+
+def Patch(url, data, addHeader=None, moduleV1=None):
+    return ValidateResponse(requests.patch(__Route(url, moduleV1), json=data, headers=__headers(data, addHeader)))
+
+def Delete(url, addHeader=None, moduleV1=None):
+    return ValidateResponse(requests.delete(__Route(url, moduleV1), headers=__headers(None, addHeader)))
+
+
+def UploadMultiPart(url, files, data=None, addHeader=None, moduleV1=None):
+    f = []
+    for file in files:
+        if isinstance(file, str):
+            f.append(('files', (file, open(file, 'rb'))))
+        elif isinstance(file, tuple) and isinstance(file[0], str) and (isinstance(file[1], bytes) or isinstance(file[1], io.BufferedReader)):
+            f.append(('files', (file[0], file[1])))
+    m = MultipartEncoder(fields=f)
+    return ValidateResponse(requests.post(__Route(url, moduleV1), data=m, headers=__headers(data, {'Content-Type': m.content_type})))
+
+
+class Safe2PayException(Exception):
+    def __init__(self, message, detail):
+        self.message = message
+        self.detail = detail
+
+def ValidateResponse(response):
+
+    if response.status_code == 200:
+        try:
+            if DEBUG:
+                print(f"Response:\n\n {json.dumps(response.json(), indent=4)} \n\n")
+            return response.json()
+        except:
+            if DEBUG:
+                print(f"Response:\n\n {response.text} \n\n")
+            return response.text
+    elif response.status_code > 200:
+        status_code = response.status_code
+        try:
+            response_json = response.json()
+            response_json['date'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            response_json['status'] = status_code
+        except Exception as e:
+            response_json = {
+                "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "status": status_code,
+                "message": "Unexpected Error",
+                "errors": [
+                    {
+                        "message": str(e),
+                        "errorCode": "0"
+                    }
+                ]
+            }
+        raise Safe2PayException("Safe2Pay Request Error", response_json)
+
+def DecimalToCents(value) -> int:
+    return int(value*100)
+
+def CentsToDecimal(value) -> Decimal:
+    return Decimal(Decimal(value)/Decimal(100))
+
+def CentsToFloat(value) -> float:
+    return float(float(value)/float(100))
