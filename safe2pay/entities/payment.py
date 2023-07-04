@@ -6,7 +6,7 @@ class Product(Safe2PayEntity):
 	def __init__(cls, **kw):
 
 		cls.__route__ = '/Payment'
-		cls.__modulev1__ = 'ABBCSS'
+		# cls.__modulev1__ = 'ABBCSS'
 		
 		cls.__metadata__ = {}
 		cls.__requireid__ = True
