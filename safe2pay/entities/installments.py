@@ -6,6 +6,8 @@ class Installments(Safe2PayEntity):
 	def __init__(cls, **kw):
 
 		cls.__route__ = '/Payment'
+		cls.__typeRoute__ = 'v2'
+		
 		cls.__metadata__ = {}
 		cls.__requireid__ = True
 

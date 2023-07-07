@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .lib import *
 
-class CreditCard(Safe2PayEntity):
+class Boleto(Safe2PayEntity):
 
 	def __init__(cls, **kw):
 

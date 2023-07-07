@@ -6,7 +6,7 @@ from datetime import datetime
 import re
 
 __methods__ = ['toJSON', 'FormatRoute', 'load', 'add', 'Create', 'Update', 'Get', 'List',
-               'Delete']
+               'Delete','ReleaseBankSlip']
 
 
 def EncodeValue(o, format=None):
@@ -123,6 +123,7 @@ class Safe2PayEntity():
     def FormatRoute(self, **kw):
         _header = None
         _route = self.__route__
+        _typeRoute = self.__typeRoute__
 
         if 'resourceToken' in kw:
             _header = {'resourceToken' :kw['resourceToken']}
@@ -139,12 +140,12 @@ class Safe2PayEntity():
                 raise Exception(f"[{self.__class__.__name__}] Param ({self.__identifier__}) is required on params")
             route = f"{route}?{self.__identifier__}={kw[self.__identifier__]}"
 
-        return _header, _route
+        return _header, _route, _typeRoute
 
     def Create(self, **kw):
         if hasattr(self, '__route__'):
-            addHeader, route = self.FormatRoute(**kw)
-            data = Post(route, self.toJSON(), addHeader)
+            addHeader, route, typeRoute = self.FormatRoute(**kw)
+            data = Post(route, self.toJSON(), addHeader, typeRoute)
             self.load(**data)
         else:
             raise Exception(f"[{self.__class__.__name__}] Method Create not allowed this object")
@@ -152,8 +153,8 @@ class Safe2PayEntity():
 
     def Update(self, **kw):
         if hasattr(self, '__route__'):
-            addHeader, route = self.FormatRoute(**kw)
-            data = Put(route, self.toJSON(), addHeader)
+            addHeader, route, typeRoute = self.FormatRoute(**kw)
+            data = Put(route, self.toJSON(), addHeader, typeRoute)
             self.load(**data)
         else:
             raise Exception(f"[{self.__class__.__name__}] Method Update not allowed this object")
@@ -161,8 +162,8 @@ class Safe2PayEntity():
 
     def Get(self, **kw):
         if hasattr(self, '__route__'):
-            addHeader, route = self.FormatRoute(**kw)
-            response = Get(route, addHeader)
+            addHeader, route, typeRoute = self.FormatRoute(**kw)
+            response = Get(route, addHeader, typeRoute)
             self.load(**response)
         else:
             raise Exception(f"[{self.__class__.__name__}] Method Get not allowed this object")
@@ -170,12 +171,12 @@ class Safe2PayEntity():
 
     def List(self, filters=None, **kw):
         if hasattr(self, '__route__'):
-            addHeader, route = self.FormatRoute(**kw)
+            addHeader, route, typeRoute = self.FormatRoute(**kw)
             qs =''
             if filters:
                 qs = '?' + '&'.join([f'{k}={v}' for k,v in filters.items()])
             route = f"{route}{qs}"
-            response = Get(route, addHeader)
+            response = Get(route, addHeader, typeRoute)
             _class = getattr(__import__(f'{self.__module__}', fromlist=[self.__class__.__name__]), self.__class__.__name__)
             return ListType(_class).add([_class(**item) for item in response['data']]) if 'data' in response else ListType(_class)
         else:
@@ -184,8 +185,8 @@ class Safe2PayEntity():
 
     def Delete(self, **kw):
         if hasattr(self, '__route__'):
-            addHeader, route = self.FormatRoute(True, **kw)
-            Delete(route, addHeader)
+            addHeader, route, typeRoute = self.FormatRoute(True, **kw)
+            Delete(route, addHeader, typeRoute)
         else:
             raise Exception(f"[{self.__class__.__name__}] Method Delete not allowed this object")
         self = None
