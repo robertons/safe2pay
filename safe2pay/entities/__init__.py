@@ -13,6 +13,7 @@ from .payment import Payment
 from .paymentmethod import PaymentMethod
 from .paymentobject import PaymentObject
 from .paymentoption import PaymentOption
+from .pix import Pix
 from .product import Product
 from .split import Split
 from .staticpix import StaticPix

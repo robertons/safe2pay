@@ -11,7 +11,7 @@ def main(arg):
     safe2pay.Safe2Pay(configuration.token_production, '', True, True)
 
     paymentObject = safe2pay.PaymentObject()
-    paymentObject.Expiration = 86400
+    paymentObject.Expiration = 120
 
     addrCustomer = safe2pay.Address()
     addrCustomer.ZipCode = '29015330'
