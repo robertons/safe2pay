@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .lib import *
+from safe2pay.entities.merchantpayment_response import MerchantPaymentResponse
 
 class StaticPix(Safe2PayEntity):
 
@@ -20,3 +21,9 @@ class StaticPix(Safe2PayEntity):
 		cls.metadata = Dict()
 
 		super().__init__(**kw)
+
+	def CreatePayment(self):
+		addHeader, route, typeRoute = self.FormatRoute(**{})
+		response = Post(f"{route}", self.toJSON(), addHeader, typeRoute)
+		payment = MerchantPaymentResponse(**response)
+		return payment

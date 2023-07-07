@@ -6,6 +6,9 @@ from .boleto import Boleto
 from .creditcard import CreditCard
 from .customer import Customer
 from .installments import Installments
+from .installmentvalue import InstallmentValue
+from .merchantpayment_response import MerchantPaymentResponse
+from .merchantpayment import MerchantPayment
 from .payment import Payment
 from .paymentmethod import PaymentMethod
 from .paymentobject import PaymentObject

@@ -14,8 +14,8 @@ class Installments(Safe2PayEntity):
 		# FIELDS
 		cls.id = String(max=26)
 		cls.Installments = Int()
-		cls.InstallmentValue= Decimal(max=18, scale=2)
-		cls.TotalValue= Decimal(max=18, scale=2)
-		cls.AppliedTax = Decimal(max=18, scale=2)
+		cls.InstallmentValue= DecimalS2P(max=18)
+		cls.TotalValue= DecimalS2P(max=18)
+		cls.AppliedTax = DecimalS2P(max=18)
 
 		super().__init__(**kw)

@@ -2,7 +2,7 @@
 .DS_Store
 # C extensions
 *.so
-test
+test/configuration.py
 venv
 
 # Packages
@@ -25,7 +25,6 @@ __pycache__
 pip-log.txt
 
 # Unit test / coverage reports
-test/
 .coverage
 .tox
 nosetests.xml

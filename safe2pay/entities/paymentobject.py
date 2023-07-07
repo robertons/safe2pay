@@ -60,6 +60,7 @@ class PaymentObject(Safe2PayEntity):
 		# cls.Reference =  String(max=200)
 		# cls.Key =  String(max=200)
 		# cls.QrCode=  String(max=200)
-		# cls.Command = Int()
+		cls.DiscountPayment = DecimalS2P(max=18)
+		cls.Command = Int()
 
 		super().__init__(**kw)

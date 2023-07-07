@@ -14,6 +14,8 @@ class CreditCard(Safe2PayEntity):
 		cls.ExpirationDate = String(max=7)
 		cls.SecurityCode = String(max=4)
 		cls.Token = String(max=42)
+		cls.Brand = Int()
+		cls.Installments = Int()
 		cls.metadata = Dict()
 
 		super().__init__(**kw)

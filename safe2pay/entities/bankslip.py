@@ -19,6 +19,13 @@ class BankSlip(Safe2PayEntity):
 		super().__init__(**kw)
 
 	def ReleaseBankSlip(self, idTransaction:str):
-		addHeader, route, _typeRoute = self.FormatRoute(**{})
-		response = Get(f"{route}/ReleaseBankSlip?idTransaction={idTransaction}", None, typeRoute= _typeRoute)
-		return BankSlipResponse(**response)
+		addHeader, route, typeRoute = self.FormatRoute(**{})
+		response = Get(f"{route}/ReleaseBankSlip?idTransaction={idTransaction}", None, addHeader, typeRoute)
+		responseBankSlip = BankSlipResponse(**response)
+		return responseBankSlip
+	
+	def WriteOffBankSlip(self, idTransaction:str):
+		addHeader, route, typeRoute = self.FormatRoute(**{})
+		response = Delete(f"{route}/WriteOffBankSlip?idTransaction={idTransaction}", addHeader, typeRoute)
+		responseBankSlip = BankSlipResponse(**response)
+		return responseBankSlip
