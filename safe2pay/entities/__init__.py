@@ -3,6 +3,7 @@ from .address import Address
 from .bankslip import BankSlip
 from .bankslip_response import BankSlipResponse
 from .boleto import Boleto
+from .checkingaccount import CheckingAccount
 from .creditcard import CreditCard
 from .customer import Customer
 from .installments import Installments

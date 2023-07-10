@@ -9,7 +9,8 @@ __methods__ = ['toJSON', 'FormatRoute', 'load', 'add', 'Create', 'Update', 'Get'
                'Delete','ReleaseBankSlip', 'ListMerchantPayment', 'GetInstallmentValues',
                'CreatePayment','ChangeDueDateBoleto', 'AddReductionPaymentBoleto', 
                'DelReductionPaymentBoleto','AddDiscountPaymentBoleto','DelDiscountPaymentBoleto',
-               'WriteOffBankSlip', 'CancelPix', 'CancelCredit', 'CaptureCredit']
+               'WriteOffBankSlip', 'CancelPix', 'CancelCredit', 'CaptureCredit', 'UpdateTransaction',
+               'UpdateSandboxTransaction','GetTransaction']
 
 
 def EncodeValue(o, format=None):
