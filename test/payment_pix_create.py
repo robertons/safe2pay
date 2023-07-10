@@ -25,9 +25,9 @@ def main(arg):
 
     customer = safe2pay.Customer()
     customer.Name = 'Elaine Cristina Compradora'
-    customer.Identity = '10808807714'
-    customer.Email = 'elainecro@gmail.com'
-    customer.Phone = '27997562156'
+    customer.Identity = '40515047007'
+    customer.Email = 'teste@gmail.com'
+    customer.Phone = '27997569999'
     customer.Address = addrCustomer
 
     produto = safe2pay.Product()
