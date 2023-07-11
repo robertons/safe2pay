@@ -103,14 +103,14 @@ class DateTime(ValidateValue):
         super().__setattr__(attr, data)
 
 
-class Decimal(ValidateValue):
+class DecimalS2P(ValidateValue):
 
     def __init__(self, **attrs):
         super().__init__(**attrs)
 
     def __setattr__(self, attr, data, check=True):
         if check and attr == "value" and data is not None:
-            if not isinstance(data, Decimal):
+            if not isinstance(data, DecimalS2P):
                 try:
                     data = decimal.Decimal(str(round(float(data), self.scale)))
                 except ValueError as e:

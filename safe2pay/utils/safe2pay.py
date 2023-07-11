@@ -43,39 +43,47 @@ def __headers(data=None, addHeader=None, moduleV1=None):
     __headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json;charset=UTF-8' if addHeader is None or not 'Content-Type' in addHeader else addHeader['Content-Type'],
-        'x-api-key': SECRETKEY
+        'x-api-key': TOKEN
     }
     if addHeader:
         del addHeader['Content-Type']
         __headers = {**__headers, **addHeader}
 
-    if SANDBOX:
-        __headers['IsSandbox'] = True
+    # if SANDBOX:
+    #     __headers['IsSandbox'] = True
 
     return __headers
 
 
-def __Route(url, moduleV1=None):
-    return f'{constants.ROUTE_V2}{url}' if moduleV1 is None else f'{constants.ROUTE_V1.format(module=moduleV1)}{url}'
+def __Route(url, typeRoute):
+    switch = {
+        'v1': constants.ROUTE_V1,
+        'v2': constants.ROUTE_V2_PAYMENT,
+        'v2api': constants.ROUTE_V2_API
+    }
+
+    urlBase = switch.get(typeRoute)
+    rota = f'{urlBase}{url}'
+    return rota
 
 
-def Get(url, data={}, addHeader=None, moduleV1=None):
-    return ValidateResponse(requests.get(__Route(url, moduleV1), params=data, headers=__headers(data, addHeader)))
+def Get(url, data={}, addHeader=None, typeRoute=None):
+    return ValidateResponse(requests.get(__Route(url, typeRoute), params=data, headers=__headers(data, addHeader)))
 
 
-def Post(url, data, addHeader=None, moduleV1=None):
-    return ValidateResponse(requests.post(__Route(url, moduleV1), json=data, headers=__headers(data, addHeader)))
+def Post(url, data, addHeader=None, typeRoute=None):
+    return ValidateResponse(requests.post(__Route(url, typeRoute), json=data, headers=__headers(data, addHeader)))
 
 
-def Put(url, data, addHeader=None, moduleV1=None):
-    return ValidateResponse(requests.put(__Route(url, moduleV1), json=data, headers=__headers(data, addHeader)))
+def Put(url, data, addHeader=None, typeRoute=None):
+    return ValidateResponse(requests.put(__Route(url, typeRoute), json=data, headers=__headers(data, addHeader)))
 
 
-def Patch(url, data, addHeader=None, moduleV1=None):
-    return ValidateResponse(requests.patch(__Route(url, moduleV1), json=data, headers=__headers(data, addHeader)))
+def Patch(url, data, addHeader=None, typeRoute=None):
+    return ValidateResponse(requests.patch(__Route(url, typeRoute), json=data, headers=__headers(data, addHeader)))
 
-def Delete(url, addHeader=None, moduleV1=None):
-    return ValidateResponse(requests.delete(__Route(url, moduleV1), headers=__headers(None, addHeader)))
+def Delete(url, addHeader=None, typeRoute=None):
+    return ValidateResponse(requests.delete(__Route(url, typeRoute), headers=__headers(None, addHeader)))
 
 
 def UploadMultiPart(url, files, data=None, addHeader=None, moduleV1=None):
