@@ -15,6 +15,12 @@ class BankSlip(Safe2PayEntity):
 		# FIELDS
 		cls.id = String(max=26)
 		cls.metadata = Dict()
+		cls.Amount = DecimalS2P(max=18)
+		cls.DueDate = DateTime(format="%d/%m/%Y")
+		cls.Message = ObjList(context=cls, key='Message', name='str')
+		cls.DiscountAmount = DecimalS2P(max=18)
+		cls.DiscountType = Int()
+		cls.DiscountDue = DateTime(format="%d/%m/%Y")
 
 		super().__init__(**kw)
 

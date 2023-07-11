@@ -37,6 +37,7 @@ class ResponseDetail(Safe2PayEntity):
 
 		cls.Id = Int()
 		cls.Identifier = String(max=200)
+		cls.IdentifierLot = String(max=50)
 		cls.QrCode = String(max=150)
 		cls.Key = String(max=200)
 
@@ -58,6 +59,7 @@ class ResponseDetail(Safe2PayEntity):
 		cls.AmountPayment = DecimalS2P(max=18)
 
 		cls.IsEnabled = Boolean()
+		cls.IsProcessed = Boolean()
 		cls.InstallmentLimit = Int()
 		cls.MinorInstallmentAmmount = Int()
 		cls.IsInstallmentEnable = Boolean()
