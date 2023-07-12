@@ -21,6 +21,7 @@ from .product import Product
 from .responsedetail import ResponseDetail
 from .split import Split
 from .staticpix import StaticPix
+from .token import Token
 from .transaction_response import TransactionResponse
 from .transaction import Transaction
 from .transactionlistresponse import TransactionListResponse
