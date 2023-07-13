@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 from .lib import *
 
-class PaymentMethod(Safe2PayEntity):
+class MerchantSplit(Safe2PayEntity):
 
 	def __init__(cls, **kw):
 
 		cls.__metadata__ = {}
 
 		# FIELDS
-		cls.Id = String(max=26)
-		cls.Code = String(max=26)
-		cls.Name = String(max=26)
-		cls.PaymentMethod = Int()
-		cls.IsPayTax = Boolean()
+		cls.id = String(max=26)
+		cls.PaymentMethodCode = String(max=1)
+		cls.IsSubaccountTaxPayer = Boolean()
 		cls.Taxes = ObjList(context=cls, key='Tax', name='Tax')
-		
+		cls.metadata = Dict()
+
 		super().__init__(**kw)

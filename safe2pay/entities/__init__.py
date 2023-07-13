@@ -1,5 +1,8 @@
 #-*- coding: utf-8 -*-
+from .accounttype import AccountType
 from .address import Address
+from .bank import Bank
+from .bankdata import BankData
 from .bankslip import BankSlip
 from .bankslip_response import BankSlipResponse
 from .boleto import Boleto
@@ -10,8 +13,10 @@ from .creditcard import CreditCard
 from .customer import Customer
 from .installments import Installments
 from .installmentvalue import InstallmentValue
+from .marketplace import Marketplace
 from .merchantpayment_response import MerchantPaymentResponse
 from .merchantpayment import MerchantPayment
+from .merchantsplit import MerchantSplit
 from .payment import Payment
 from .paymentmethod import PaymentMethod
 from .paymentobject import PaymentObject
@@ -21,6 +26,7 @@ from .product import Product
 from .responsedetail import ResponseDetail
 from .split import Split
 from .staticpix import StaticPix
+from .tax import Tax
 from .token import Token
 from .transaction_response import TransactionResponse
 from .transaction import Transaction
