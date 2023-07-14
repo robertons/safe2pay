@@ -10,6 +10,7 @@ class PaymentMethod(Safe2PayEntity):
 		# FIELDS
 		cls.Id = String(max=26)
 		cls.Code = String(max=26)
+		cls.CodePaymentMethod = String(max=26)
 		cls.Name = String(max=26)
 		cls.PaymentMethod = Int()
 		cls.IsPayTax = Boolean()

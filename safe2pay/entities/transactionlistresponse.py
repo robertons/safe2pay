@@ -9,6 +9,7 @@ class TransactionListResponse(Safe2PayEntity):
 		# FIELDS
 		cls.TotalItems = Int()
 		cls.Objects = ObjList(context=cls, key='ResponseDetail', name='ResponseDetail')
+		cls.Objects1 = ObjList(context=cls, key='Objects', name='ResponseDetail')
 		
 		cls.Error = String(max=200)
 		cls.Metadata = Dict()

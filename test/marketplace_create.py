@@ -57,27 +57,27 @@ def main(arg):
 
     # merchantSplit
     tax1 = safe2pay.Tax()
-    tax1.TaxTypeName = '1'
-    tax1.Tax = 80
+    tax1.TaxTypeName = '2'
+    tax1.Tax = 2
 
-    merchantSplit1 = safe2pay.MerchantSplit()
-    merchantSplit1.PaymentMethodCode = '1'
-    merchantSplit1.IsSubaccountTaxPayer = False
-    merchantSplit1.Taxes.add(tax1)
+    # merchantSplit1 = safe2pay.MerchantSplit()
+    # merchantSplit1.PaymentMethodCode = '1'
+    # merchantSplit1.IsSubaccountTaxPayer = False
+    # merchantSplit1.Taxes.add(tax1)
 
     merchantSplit2 = safe2pay.MerchantSplit()
     merchantSplit2.PaymentMethodCode = '2'
     merchantSplit2.IsSubaccountTaxPayer = False
     merchantSplit2.Taxes.add(tax1)
 
-    merchantSplit3 = safe2pay.MerchantSplit()
-    merchantSplit3.PaymentMethodCode = '6'
-    merchantSplit3.IsSubaccountTaxPayer = False
-    merchantSplit3.Taxes.add(tax1)
+    # merchantSplit3 = safe2pay.MerchantSplit()
+    # merchantSplit3.PaymentMethodCode = '6'
+    # merchantSplit3.IsSubaccountTaxPayer = False
+    # merchantSplit3.Taxes.add(tax1)
 
-    marketplace.MerchantSplit.add(merchantSplit1)
+    # marketplace.MerchantSplit.add(merchantSplit1)
     marketplace.MerchantSplit.add(merchantSplit2)
-    marketplace.MerchantSplit.add(merchantSplit3)
+    # marketplace.MerchantSplit.add(merchantSplit3)
 
     response = marketplace.CreateSubAccount()
     print(f'Retorno CreateSubAccount: {response.toJSON()}')

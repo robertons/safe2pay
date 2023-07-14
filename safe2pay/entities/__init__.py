@@ -13,10 +13,14 @@ from .creditcard import CreditCard
 from .customer import Customer
 from .installments import Installments
 from .installmentvalue import InstallmentValue
+from .integration import Integration
 from .marketplace import Marketplace
+from .marketplacelistresponse import MarketplaceListResponse
+from .merchantaccount import MerchantAccount
 from .merchantpayment_response import MerchantPaymentResponse
 from .merchantpayment import MerchantPayment
 from .merchantsplit import MerchantSplit
+from .merchanttype import MerchantType
 from .payment import Payment
 from .paymentmethod import PaymentMethod
 from .paymentobject import PaymentObject
@@ -24,6 +28,7 @@ from .paymentoption import PaymentOption
 from .pix import Pix
 from .product import Product
 from .responsedetail import ResponseDetail
+from .singlesale import SingleSale
 from .split import Split
 from .staticpix import StaticPix
 from .tax import Tax

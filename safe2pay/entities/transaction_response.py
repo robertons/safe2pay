@@ -9,6 +9,7 @@ class TransactionResponse(Safe2PayEntity):
 		# FIELDS
 		cls.HasError = Boolean()
 		cls.ResponseDetail = Obj(context=cls, key='TransactionListResponse', name='TransactionListResponse')
+		cls.ResponseDetail1 = Obj(context=cls, key='ResponseDetail', name='TransactionListResponse')
 		
 		cls.Error = String(max=200)
 		cls.Metadata = Dict()

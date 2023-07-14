@@ -13,7 +13,8 @@ __methods__ = ['toJSON', 'FormatRoute', 'load', 'add', 'Create', 'Update', 'Get'
                'UpdateSandboxTransaction','GetTransaction','GetTransactionByReference', 
                'GetTransactionList', 'GetCarneta', 'ResendCarneta', 'CancelCarneta', 'CreateToken',
                'DeleteToken', 'CreateSubAccount', 'GetSubAccount', 'GetList', 'PutSubAccount', 
-               'DeleteSubAccount']
+               'DeleteSubAccount','CreateSingleSale','CancelSingleSale','ListSingleSales',
+               'GetSingleSale','ResendSingleSale']
 
 
 def EncodeValue(o, format=None):
@@ -45,12 +46,13 @@ class Safe2PayEntity():
                 try:
                     if not k.startswith("__"):
                         if k in kw:
-                            if self[k].__class__.__name__.startswith("Obj"):
-                                self.add(k, kw[k])
-                            else:
-                                self[k].value = kw[k]
-                                self.__metadata__['data'][k] = EncodeValue(
-                                    self[k].value, self[k].format)
+                            if (self[k].value != None):
+                                if self[k].__class__.__name__.startswith("Obj"):
+                                    self.add(k, kw[k])
+                                else:
+                                    self[k].value = kw[k]
+                                    self.__metadata__['data'][k] = EncodeValue(
+                                        self[k].value, self[k].format)
                 except Exception as e:
                     raise Exception(f"[{self.__class__.__name__}] Field [{k}] Value [{kw[k]}] Error : {e}")
 
