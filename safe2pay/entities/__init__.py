@@ -2,6 +2,7 @@
 from .accountresponse import AccountResponse
 from .accounttype import AccountType
 from .address import Address
+from .anticipation import Anticipation
 from .bank import Bank
 from .bankdata import BankData
 from .bankslip import BankSlip
@@ -13,6 +14,7 @@ from .checkingaccount import CheckingAccount
 from .creditcard import CreditCard
 from .customer import Customer
 from .deposit import Deposit
+from .effectiveness import Effectiveness
 from .extract import Extract
 from .installments import Installments
 from .installmentvalue import InstallmentValue
