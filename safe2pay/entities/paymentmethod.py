@@ -14,6 +14,12 @@ class PaymentMethod(Safe2PayEntity):
 		cls.Name = String(max=26)
 		cls.PaymentMethod = Int()
 		cls.IsPayTax = Boolean()
+		cls.Amount = DecimalS2P(max=15)
+		cls.Tax = DecimalS2P(max=15)
+		cls.Description = String(max=100)
+		cls.Reference = String(max=100)
+		cls.InstallmentCurrent = Int()
+		cls.InstallmentQuantity = Int()
 		cls.Taxes = ObjList(context=cls, key='Tax', name='Tax')
 		
 		super().__init__(**kw)

@@ -89,6 +89,14 @@ class ResponseDetail(Safe2PayEntity):
 		cls.Installments = ObjList(context=cls, key='installments', name='Installments')
 		cls.Products = ObjList(context=cls, key='products', name='Product')
 		cls.CheckingAccounts = ObjList(context=cls, key='checkingaccount', name='CheckingAccount')
+
+		cls.AmountReceived = DecimalS2P(max=15)
+		cls.AmountPreview = DecimalS2P(max=15)
+		cls.AmountCanceled = DecimalS2P(max=15)
+		cls.AmountContestation = DecimalS2P(max=15)
+		cls.AmountTaxes = DecimalS2P(max=15)
+		cls.AmountAvailableTodal = DecimalS2P(max=15)
+		cls.AmountPreviewTotal = DecimalS2P(max=15)
 		cls.metadata = Dict()
 
 		super().__init__(**kw)

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from .lib import *
 
+from safe2pay.entities.marketplaceobjects import MarketplaceObjects
+
 class MarketplaceListResponse(Safe2PayEntity):
 
 	def __init__(cls, **kw):
@@ -16,11 +18,3 @@ class MarketplaceListResponse(Safe2PayEntity):
 		cls.metadata = Dict()
 
 		super().__init__(**kw)
-		
-    
-class MarketplaceObjects(Safe2PayEntity):
-	def __init__(cls, **kw):
-		cls.__metadata__ = {}
-		
-		cls.TotalItems = Int()
-		cls.Objects = Obj(context=cls, key='MerchantAccount', name='MerchantAccount')
