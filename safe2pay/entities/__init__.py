@@ -44,3 +44,5 @@ from .token import Token
 from .transaction_response import TransactionResponse
 from .transaction import Transaction
 from .transactionlistresponse import TransactionListResponse
+from .transfer import Transfer
+from .transferregister import TransferRegister

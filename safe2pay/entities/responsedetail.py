@@ -9,6 +9,10 @@ class ResponseDetail(Safe2PayEntity):
 
 		# FIELDS
 		cls.IdTransaction = Int()
+		cls.TransactionID = String(max=100)
+		cls.IdTransfer = Int()
+		cls.IdTransferRegisterLot = Int()
+		cls.IdMerchantRequester = Int()
 		cls.Name = String(max=200)
 		cls.CommercialName = String(max=200)
 		cls.ResponsibleIdentity = String(max=20)
@@ -21,7 +25,7 @@ class ResponseDetail(Safe2PayEntity):
 		cls.BankSlipNumber = String(max=50)
 		cls.DueDate = String(max=10) # DateTime(format="%d/%m/%Y") - troquei pq tem lugares que retornam a data em outro formato
 		cls.DigitableLine = String(max=50)
-		cls.Barcode = String()
+		cls.Barcode = String(max=200)
 		cls.BankSlipUrl = String(max=200)
 		cls.OperationDate = DateTime(format="%d/%m/%Y")
 		cls.BankName = String(max=100)
@@ -83,12 +87,31 @@ class ResponseDetail(Safe2PayEntity):
 		cls.BankData = Obj(context=cls, key='bankdata', name='BankData')
 		cls.Address = Obj(context=cls, key='address', name='Address')
 		cls.Customer = Obj(context=cls, key='customer', name='Customer')
+
+		cls.AccountType = Obj(context=cls, key='accounttype', name='AccountType')
+		cls.TransferType = Obj(context=cls, key='transfertype', name='AccountType')
+
 		cls.PaymentMethod = String(max=20)#Obj(context=cls, key='paymentmethod', name='PaymentMethod')
 		cls.PaymentMethods = ObjList(context=cls, key='paymentmethod', name='PaymentMethod')
 		cls.CreditCard = Obj(context=cls, key='creditcard', name='CreditCard')
 		cls.Installments = ObjList(context=cls, key='installments', name='Installments')
 		cls.Products = ObjList(context=cls, key='products', name='Product')
 		cls.CheckingAccounts = ObjList(context=cls, key='checkingaccount', name='CheckingAccount')
+
+		cls.ReceiverName = String(max=150)
+		cls.NegotiationTax = DecimalS2P(max=15)
+		cls.Identification = String(max=150)
+		cls.IsTransferred = Boolean()
+		cls.IsReleaseTransfer = Boolean()
+		cls.IsNotified = Boolean()
+		cls.IsReturned = Boolean()
+		cls.IsExcluded = Boolean()
+		cls.IsUseCheckingAccount = Boolean()
+		cls.HashScheduling = String(max=100)
+		cls.HashConfirmation = String(max=100)
+		cls.CompensationDate = String(max=22)
+		cls.Validation = String(max=100)
+	
 
 		cls.AmountReceived = DecimalS2P(max=15)
 		cls.AmountPreview = DecimalS2P(max=15)
@@ -97,6 +120,7 @@ class ResponseDetail(Safe2PayEntity):
 		cls.AmountTaxes = DecimalS2P(max=15)
 		cls.AmountAvailableTodal = DecimalS2P(max=15)
 		cls.AmountPreviewTotal = DecimalS2P(max=15)
+
 		cls.metadata = Dict()
 
 		super().__init__(**kw)

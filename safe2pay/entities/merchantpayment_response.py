@@ -8,10 +8,10 @@ class MerchantPaymentResponse(Safe2PayEntity):
 
 		# FIELDS
 		cls.HasError = Boolean()
-		cls.ResponseDetail = ObjList(context=cls, key='ResponseDetail', name='ResponseDetail')
-		
 		cls.Error = String(max=200)
 		cls.ErrorCode = String(max=10)
+
+		cls.ResponseDetail = ObjList(context=cls, key='ResponseDetail', name='ResponseDetail')
 		cls.Metadata = Dict()
 
 		super().__init__(**kw)

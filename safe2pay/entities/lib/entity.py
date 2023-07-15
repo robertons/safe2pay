@@ -15,7 +15,8 @@ __methods__ = ['toJSON', 'FormatRoute', 'load', 'add', 'Create', 'Update', 'Get'
                'DeleteToken', 'CreateSubAccount', 'GetSubAccount', 'GetList', 'PutSubAccount', 
                'DeleteSubAccount','CreateSingleSale','CancelSingleSale','ListSingleSales',
                'GetSingleSale','ResendSingleSale','ListDeposits', 'DetailDeposits','GetMerchantBankData',
-               'GetBalance', 'Simulate', 'EffectSimulate']
+               'GetBalance', 'Simulate', 'EffectSimulate','PostTransfer', 'GetTransfer', 'ListTransfers',
+               'ListLotTransfers']
 
 
 def EncodeValue(o, format=None):
@@ -42,11 +43,16 @@ class Safe2PayEntity():
         self.load(**kw)
 
     def load(self, **kw):
+        # print("KW")
+        # print(kw)
         if len(kw) > 0:
             for k in self.__dict__:
+                # print("K")
+                # print(k)
                 try:
                     if not k.startswith("__"):
                         if k in kw:
+                            #print(f"k {k} está em kw {kw}")
                             if (self[k].value != None):
                                 if self[k].__class__.__name__.startswith("Obj"):
                                     self.add(k, kw[k])
