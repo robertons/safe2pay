@@ -11,6 +11,7 @@ from .boleto import Boleto
 from .carnet import Carnet
 from .carnetasync import CarnetaSync
 from .checkingaccount import CheckingAccount
+from .city import City
 from .creditcard import CreditCard
 from .customer import Customer
 from .deposit import Deposit
@@ -34,6 +35,9 @@ from .paymentobject import PaymentObject
 from .paymentoption import PaymentOption
 from .pix import Pix
 from .plan import Plan
+from .plansubscription import PlanSubscription
+from .plandataresponse import PlanDataResponse
+from .planresponse import PlanResponse
 from .product import Product
 from .responsedetail_account import ResponseAccountDetail
 from .responsedetail import ResponseDetail

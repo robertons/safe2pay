@@ -14,7 +14,7 @@ class Address(Safe2PayEntity):
 		cls.Number = String(max=15)
 		cls.District = String(max=60)
 		cls.CityName = String(max=200)
-		cls.City = String(max=200)
+		cls.City = Obj(context=cls, key='City', name='City')
 		cls.StateInitials = String(max=2)
 		cls.State = String(max=100)
 		cls.Complement = String(max=150)

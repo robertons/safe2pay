@@ -3,6 +3,8 @@ from .lib import *
 from safe2pay.entities.bankslip_response import BankSlipResponse
 from safe2pay.entities.merchantpayment_response import MerchantPaymentResponse
 from safe2pay.entities.transaction_response import TransactionResponse
+from safe2pay.entities.planresponse import PlanResponse
+from safe2pay.entities.responsedetail import ResponseDetail
 
 class Plan(Safe2PayEntity):
 
@@ -17,6 +19,7 @@ class Plan(Safe2PayEntity):
 
 		# FIELDS
 		cls.id = String(max=26)
+		cls.IdMerchant = Int()
 		cls.PlanOption = Int()
 		cls.PlanFrequence = Int()
 		cls.ChargeDay = Int()
@@ -38,23 +41,24 @@ class Plan(Safe2PayEntity):
 		cls.PenaltyAmount = DecimalS2P(max=15)
 		cls.InterestAmount = DecimalS2P(max=15)
 		cls.DiscountType = Int()
-		cls.DiscountDue = DateTime(format="%d/%m/%Y")
 		cls.DiscountAmount = DecimalS2P(max=15)
+		cls.PaymentMethod = Int()
+		cls.Customer = ObjList(context=cls, key='Customer', name='Customer')
+		cls.Emails = ObjList(context=cls, key='Emails', name='str')
+		cls.Token = String(max=42)
 
 		super().__init__(**kw)
 
 	def CreatePlan(self):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
-		print("ROUTE")
-		print(route)
 		response = Post(f"{route}", self.toJSON(), addHeader, typeRoute, self.__module__)
-		newPlan = MerchantPaymentResponse(**response)
+		newPlan = PlanResponse(**response)
 		return newPlan
 	
 	def GetPlan(self, id:str):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
 		response = Get(f"{route}/{id}", None, addHeader, typeRoute, self.__module__)
-		plan = MerchantPaymentResponse(**response)
+		plan = PlanResponse(**response)
 		return plan
 	
 	def ListPlans(self, name:str, isEnabled:str, pageNumber:str, rowsPerPage:str):
@@ -75,12 +79,17 @@ class Plan(Safe2PayEntity):
 			urlCompleta = urlCompleta + f"RowsPerPage={rowsPerPage}&"
 			
 		response = Get(f"{urlCompleta}",None, addHeader, typeRoute, self.__module__)
-		transacoes = TransactionResponse(**response)
+		transacoes = PlanResponse(**response)
 		return transacoes
 	
 	def DisablePlan(self, id:str):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
 		response = Patch(f"{route}/{id}/Disable", None, addHeader, typeRoute, self.__module__)
-		plan = MerchantPaymentResponse(**response)
+		plan = PlanResponse(**response)
 		return plan
 	
+	def CreateSubscription(self, idPlan:str):
+		addHeader, route, typeRoute = self.FormatRoute(**{})
+		response = Post(f"{route}/{idPlan}/Subscriptions", self.toJSON(), addHeader, typeRoute, self.__module__)
+		newPlan = PlanResponse(**response)
+		return newPlan

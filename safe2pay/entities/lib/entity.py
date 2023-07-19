@@ -16,7 +16,9 @@ __methods__ = ['toJSON', 'FormatRoute', 'load', 'add', 'Create', 'Update', 'Get'
                'DeleteSubAccount','CreateSingleSale','CancelSingleSale','ListSingleSales',
                'GetSingleSale','ResendSingleSale','ListDeposits', 'DetailDeposits','GetMerchantBankData',
                'GetBalance', 'Simulate', 'EffectSimulate','PostTransfer', 'GetTransfer', 'ListTransfers',
-               'ListLotTransfers', 'CreatePlan','GetPlan','ListPlans','DisablePlan']
+               'ListLotTransfers', 'CreatePlan','GetPlan','ListPlans','DisablePlan', 'CreateSubscription',
+               'CreatePlanSimulate','GetSubscription','ListSubscriptions','GetSubscriptionCharges',
+               'DisableSubscription','UpdateTokenCard']
 
 
 def EncodeValue(o, format=None):
@@ -43,23 +45,17 @@ class Safe2PayEntity():
         self.load(**kw)
 
     def load(self, **kw):
-        # print("KW")
-        # print(kw)
         if len(kw) > 0:
             for k in self.__dict__:
-                # print("K")
-                # print(k)
                 try:
                     if not k.startswith("__"):
                         if k in kw:
-                            #print(f"k {k} está em kw {kw}")
-                            if (self[k].value != None):
-                                if self[k].__class__.__name__.startswith("Obj"):
-                                    self.add(k, kw[k])
-                                else:
-                                    self[k].value = kw[k]
-                                    self.__metadata__['data'][k] = EncodeValue(
-                                        self[k].value, self[k].format)
+                            #if (self[k].value != None):
+                            if self[k].__class__.__name__.startswith("Obj"):
+                                self.add(k, kw[k])
+                            else:
+                                self[k].value = kw[k]
+                                self.__metadata__['data'][k] = EncodeValue(self[k].value, self[k].format)
                 except Exception as e:
                     raise Exception(f"[{self.__class__.__name__}] Field [{k}] Value [{kw[k]}] Error : {e}")
 

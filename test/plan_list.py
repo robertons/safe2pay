@@ -14,7 +14,7 @@ def main(arg):
     plan = safe2pay.Plan()
     
     name = None 
-    isEnabled = None 
+    isEnabled = True 
     pageNumber = 1
     rowsPerPage = 50
     

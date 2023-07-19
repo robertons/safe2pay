@@ -11,7 +11,7 @@ def main(arg):
     safe2pay.Safe2Pay(configuration.token_production, '', True, True)
 
     paymentObject = safe2pay.PaymentObject()
-    paymentObject.DueDate = '10/07/2023'
+    paymentObject.DueDate = '30/07/2023'
     paymentObject.Instruction = 'Instrução de exemplo'
     paymentObject.Message = ['Mensagem 1', 'Mensagem 2', 'Mensagem 3']
     paymentObject.PenaltyRate = 2.25
@@ -21,7 +21,7 @@ def main(arg):
     paymentObject.IsEnablePartialPayment = False
     paymentObject.DiscountAmount = 0.01
     paymentObject.DiscountType = 1
-    paymentObject.DiscountDue = '09/07/2023'
+    paymentObject.DiscountDue = '29/07/2023'
 
     addrCustomer = safe2pay.Address()
     addrCustomer.ZipCode = '29015330'

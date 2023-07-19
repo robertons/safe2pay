@@ -108,7 +108,7 @@ class Safe2PayException(Exception):
 
 def ValidateResponse(response):
 
-    if response.status_code == 200:
+    if response.status_code == 200 or response.status_code == 201:
         try:
             if DEBUG:
                 print(f"Response:\n\n {json.dumps(response.json(), indent=4)} \n\n")
@@ -117,7 +117,7 @@ def ValidateResponse(response):
             if DEBUG:
                 print(f"Response:\n\n {response.text} \n\n")
             return response.text
-    elif response.status_code > 200:
+    elif response.status_code > 201:
         status_code = response.status_code
         try:
             response_json = response.json()

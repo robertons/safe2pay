@@ -121,6 +121,8 @@ class ResponseDetail(Safe2PayEntity):
 		cls.AmountAvailableTodal = DecimalS2P(max=15)
 		cls.AmountPreviewTotal = DecimalS2P(max=15)
 
+		cls.Success = Boolean()
+
 		cls.metadata = Dict()
 
 		super().__init__(**kw)

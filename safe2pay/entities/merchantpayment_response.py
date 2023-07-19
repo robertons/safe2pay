@@ -11,6 +11,8 @@ class MerchantPaymentResponse(Safe2PayEntity):
 		cls.Error = String(max=200)
 		cls.ErrorCode = String(max=10)
 
+		cls.Success = Boolean()
+
 		cls.ResponseDetail = ObjList(context=cls, key='ResponseDetail', name='ResponseDetail')
 		cls.Metadata = Dict()
 

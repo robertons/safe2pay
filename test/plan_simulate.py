@@ -37,8 +37,14 @@ def main(arg):
     plan.DiscountDue = "30/07/2023"
     plan.DiscountAmount = 1
     
-    response = plan.CreatePlan()
-    print(f'Retorno CreatePlan: {response.toJSON()}')
+    plansimulate = safe2pay.PlanSubscription()
+    plansimulate.Plan = plan
+    plansimulate.SubscriptionDate = "2023-07-20"
+    plansimulate.PaymentMethod = 2
+    
+    response = plansimulate.CreatePlanSimulate()
+    
+    print(f'Retorno CreatePlanSimulate: {response.toJSON()}')
 
 
 if __name__ == "__main__":
