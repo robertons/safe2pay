@@ -55,7 +55,7 @@ def __headers(data=None, addHeader=None, moduleV1=None):
     return __headers
 
 
-def __Route(url, typeRoute):
+def __Route(url, typeRoute, module=None):
     switch = {
         'v1': constants.ROUTE_V1,
         'v2': constants.ROUTE_V2_PAYMENT,
@@ -63,27 +63,31 @@ def __Route(url, typeRoute):
     }
 
     urlBase = switch.get(typeRoute)
+    if (typeRoute == 'v1'):
+        print("URL")
+        urlBase = urlBase.replace("{module}", module)
+        print(urlBase)
     rota = f'{urlBase}{url}'
     return rota
 
 
-def Get(url, data={}, addHeader=None, typeRoute=None):
-    return ValidateResponse(requests.get(__Route(url, typeRoute), params=data, headers=__headers(data, addHeader)))
+def Get(url, data={}, addHeader=None, typeRoute=None, module=None):
+    return ValidateResponse(requests.get(__Route(url, typeRoute, module), params=data, headers=__headers(data, addHeader)))
 
 
-def Post(url, data, addHeader=None, typeRoute=None):
-    return ValidateResponse(requests.post(__Route(url, typeRoute), json=data, headers=__headers(data, addHeader)))
+def Post(url, data, addHeader=None, typeRoute=None, module=None):
+    return ValidateResponse(requests.post(__Route(url, typeRoute, module), json=data, headers=__headers(data, addHeader)))
 
 
-def Put(url, data, addHeader=None, typeRoute=None):
-    return ValidateResponse(requests.put(__Route(url, typeRoute), json=data, headers=__headers(data, addHeader)))
+def Put(url, data, addHeader=None, typeRoute=None, module=None):
+    return ValidateResponse(requests.put(__Route(url, typeRoute, module), json=data, headers=__headers(data, addHeader)))
 
 
-def Patch(url, data, addHeader=None, typeRoute=None):
-    return ValidateResponse(requests.patch(__Route(url, typeRoute), json=data, headers=__headers(data, addHeader)))
+def Patch(url, data, addHeader=None, typeRoute=None, module=None):
+    return ValidateResponse(requests.patch(__Route(url, typeRoute, module), json=data, headers=__headers(data, addHeader)))
 
-def Delete(url, addHeader=None, typeRoute=None):
-    return ValidateResponse(requests.delete(__Route(url, typeRoute), headers=__headers(None, addHeader)))
+def Delete(url, addHeader=None, typeRoute=None, module=None):
+    return ValidateResponse(requests.delete(__Route(url, typeRoute, module), headers=__headers(None, addHeader)))
 
 
 def UploadMultiPart(url, files, data=None, addHeader=None, moduleV1=None):

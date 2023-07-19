@@ -16,7 +16,7 @@ __methods__ = ['toJSON', 'FormatRoute', 'load', 'add', 'Create', 'Update', 'Get'
                'DeleteSubAccount','CreateSingleSale','CancelSingleSale','ListSingleSales',
                'GetSingleSale','ResendSingleSale','ListDeposits', 'DetailDeposits','GetMerchantBankData',
                'GetBalance', 'Simulate', 'EffectSimulate','PostTransfer', 'GetTransfer', 'ListTransfers',
-               'ListLotTransfers']
+               'ListLotTransfers', 'CreatePlan','GetPlan','ListPlans','DisablePlan']
 
 
 def EncodeValue(o, format=None):
@@ -136,7 +136,7 @@ class Safe2PayEntity():
         except Exception as e:
             raise e
 
-    def FormatRoute(self, **kw):
+    def  FormatRoute(self, **kw):
         _header = None
         _route = self.__route__
         _typeRoute = self.__typeRoute__

@@ -33,6 +33,7 @@ from .paymentmethod import PaymentMethod
 from .paymentobject import PaymentObject
 from .paymentoption import PaymentOption
 from .pix import Pix
+from .plan import Plan
 from .product import Product
 from .responsedetail_account import ResponseAccountDetail
 from .responsedetail import ResponseDetail

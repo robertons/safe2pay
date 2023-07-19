@@ -21,7 +21,7 @@ class TransferRegister(Safe2PayEntity):
 		cls.Identity = String(max=14)
 		cls.Identification = String(max=100)
 		cls.Amount = DecimalS2P(max=15)
-		cls.CompensationDate = DateTime(format="%y-%m-%d")
+		cls.CompensationDate = DateTime(format="%Y-%m-%d")
 		cls.CallbackUrl = String(max=200)
 		cls.metadata = Dict()
 
