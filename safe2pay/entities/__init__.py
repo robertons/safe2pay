@@ -10,6 +10,7 @@ from .bankslip_response import BankSlipResponse
 from .boleto import Boleto
 from .carnet import Carnet
 from .carnetasync import CarnetaSync
+from .chargeback import Chargeback
 from .checkingaccount import CheckingAccount
 from .city import City
 from .creditcard import CreditCard

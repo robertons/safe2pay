@@ -18,7 +18,7 @@ __methods__ = ['toJSON', 'FormatRoute', 'load', 'add', 'Create', 'Update', 'Get'
                'GetBalance', 'Simulate', 'EffectSimulate','PostTransfer', 'GetTransfer', 'ListTransfers',
                'ListLotTransfers', 'CreatePlan','GetPlan','ListPlans','DisablePlan', 'CreateSubscription',
                'CreatePlanSimulate','GetSubscription','ListSubscriptions','GetSubscriptionCharges',
-               'DisableSubscription','UpdateTokenCard']
+               'DisableSubscription','UpdateTokenCard','ListChargebacks','GetChargeback']
 
 
 def EncodeValue(o, format=None):
