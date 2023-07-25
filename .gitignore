@@ -4,6 +4,7 @@
 *.so
 test/configuration.py
 venv
+env
 
 # Packages
 *.egg
