@@ -1,20 +1,20 @@
-# SDK Python3 para Integração com Pagar.ME
+# SDK Python3 para Integração com Safe2Pay
 
-Esta SDK foi desenvolvida para abstrair aos desenvolvedores os principais detalhes da comunicação com API v5 da Pagar.ME tanto em produção quanto ambiente sandbox.
+Esta SDK foi desenvolvida para abstrair aos desenvolvedores os principais detalhes da comunicação com API da Safe2Pay tanto em produção quanto ambiente sandbox.
 
-Você pode acessar a documentação base da api aqui: [Api V5 Pagar.ME](https://docs.pagar.me/reference/).
+Você pode acessar a documentação base da api aqui: [Api Safe2Pay](https://developers.safe2pay.com.br/).
 
-![Licença](https://img.shields.io/github/license/robertons/pagarmepy) ![image](https://img.shields.io/pypi/v/pagarmepy) ![image](https://img.shields.io/pypi/status/pagarmepy) ![image](https://img.shields.io/badge/python-v3.7-blue) ![image](https://img.shields.io/badge/build-passing-brightgreen) ![image](https://img.shields.io/badge/coverage-100%25-brightgreen) ![image](https://img.shields.io/github/last-commit/robertons/pagarmepy)
+![Licença](https://img.shields.io/github/license/robertons/safe2pay) ![image](https://img.shields.io/pypi/v/safe2pay) ![image](https://img.shields.io/pypi/status/safe2pay) ![image](https://img.shields.io/badge/python-v3.9-blue) ![image](https://img.shields.io/badge/build-passing-brightgreen) ![image](https://img.shields.io/badge/coverage-100%25-brightgreen) ![image](https://img.shields.io/github/last-commit/robertons/safe2pay)
 
 # Instalação
 Instalação utilizando Pip
 ```bash
-pip install pagarmepy
+pip install safe2pay
 ```
 Git/Clone
 ```
-git clone https://github.com/robertons/pagarmepy
-cd pagarmepy
+git clone https://github.com/robertons/safe2pay
+cd safe2pay
 pip install -r requirements.txt
 python setup.py install
 ```
@@ -49,42 +49,24 @@ objeto = Objeto(...)
 print(objeto.toJSON())
 ```
 
-##  Operações em Centavos
-
-Todos os campos referente a valores operacionais Pagar.Me são em centavos as funções abaixo facilitam a conversão e reversão em caso dos Webhooks para utilização dos valores em outros formatos.
-
-### Qualquer valor em Float ou Decimal para Centavos Inteiro
-```python
-  valor_centavos_int = pagarmepy.DecimalToCents(valor)
-```
-
-### Qualquer Inteiro em centavos para Float
-```python
-  valor_float = pagarmepy.CentsToFloat(valor)
-```
-
-### Qualquer Inteiro em centavos para Decimal (decimal.Decimal)
-```python
-  valor_decimal = pagarmepy.CentsToDecimal(valor)
-```
 
 ## Configuração Inicial
 |posição  | campo |  obrigatório | padrão | descrição |
 |--|--|--|--|--|
-| 1 | idAccount | **sim** |  |ID da Conta Pagar.ME
-| 2 | publicKey | **sim** |  | Chave Pública
-| 3 | privateKey | **sim** |  | Chave Secreta
-| 4 | sandbox | **não** | **False** | Ambiente Produção/Sandbox
-| 5 | debug | **não** | **False** | Depuração de Request Post, Get, Put, Patch e Delete e Resposta Pagar.ME
+| 1 | token | **sim** |  |token da conta Safe2Pay
+| 2 | secretKey | **não** |  | secretKey da conta Safe2Pay
+| 3 | sandbox | **não** | **False** | Ambiente Produção/Sandbox
+| 4 | debug | **não** | **False** | Depuração de Request Post, Get, Put, Patch e Delete e Resposta Safe2Pay
 
 ```python
-import pagarmepy
+import safe2pay
 
-pagarmepy.PagarMe('idAccount', 'publicKey', 'privateKey', sandbox=True)
+safe2pay.Safe2Pay('token', 'secretKey', sandbox=True, debug=False)
 ```
 
-**Mais detalhes em [Documentação Oficial](https://docs.pagar.me/reference/autentica%C3%A7%C3%A3o-2)**
+**Mais detalhes em [Documentação Oficial](https://developers.safe2pay.com.br/README?id=autentica%c3%a7%c3%a3o)**
 
+# Documentação pendente de atualização
 ## Cliente
 
 ### Criar
@@ -1026,9 +1008,9 @@ saque = pagarmepy.Recipient(id="rp_WGAn6Q4SySWZBlRy").GetWithdraw("with_LR4Wxpqt
   saques = pagarmepy.Recipient(id="rp_WGAn6Q4SySWZBlRy").ListWithdrawals()
 ```
 
-## Suporte Oficial da Pagar.ME
+## Suporte Oficial da Safe2Pay
 
-Em caso de dúvidas, problemas ou sugestões:  [relacionamento@pagar.me](mailto:relacionamento@pagar.me)
+Em caso de dúvidas, problemas ou sugestões:  [suporte@safe2pay.com.br](mailto:suporte@safe2pay.com.br)
 
 ## Change log
 

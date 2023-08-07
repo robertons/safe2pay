@@ -14,12 +14,12 @@ def main(arg):
     plan = safe2pay.Plan()
     plan.PaymentMethod = 2 #cartão de crédito
     
-    plan.Emails = ['teste@gmail.com.br', 'elainecro@gmail.com']
+    plan.Emails = ['elainecro@gmail.com']
     
     customer = safe2pay.Customer()
-    customer.Name = "Elaine Cristina Rocha"
-    customer.Identity = "04040761065"
-    customer.Email = 'elainecro@gmail.com'
+    customer.Name = "Elaine Cristina Assinante"
+    customer.Identity = "10808807714"
+    customer.Email = 'elaine@optsol.com.br'
     
     address = safe2pay.Address()
     address.Street = "Rua de Teste"
@@ -29,15 +29,15 @@ def main(arg):
     address.Complement = "Complemento"
     
     city = safe2pay.City()
-    city.CodeIBGE = "4323002"
+    city.CodeIBGE = "3205309"
     address.City = city
     customer.Address = address
     
     plan.Customer = customer
-    plan.Token = "8639c75f65eb45aba8688cac9b43af68"
+    plan.Token = "36f676af6df14d16b2132230ecd2e5d8"
 
     
-    response = plan.CreateSubscription("10265")
+    response = plan.CreateSubscription("10623")
     print(f'Retorno CreateSubscription: {response.toJSON()}')
 
 

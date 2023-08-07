@@ -8,12 +8,12 @@ with open('requirements.txt') as reqs:
     requirements = reqs.read().split()
 
 setuptools.setup(
-    name='pagarmepy',
-    version='0.0.1',
-    description='SDK Python3 para Integração com Pagar.Me API V5',
+    name='safe2pay',
+    version='0.0.5',
+    description='SDK Python3 para Integração com Safe2Pay',
     author='Roberto Neves',
     author_email='robertonsilva@gmail.com',
-    url='https://github.com/robertons/pagarmepy',
+    url='https://github.com/robertons/safe2pay',
     packages=setuptools.find_packages(),
     install_requires=requirements,
     long_description=readme,
@@ -32,5 +32,5 @@ setuptools.setup(
         'Topic :: Office/Business',
         'Topic :: Utilities'
     ],
-    keywords='pagarme, pagar.me, pagar me, pagamento, cartão de crédito, boleto, pix, pagamentos, transações, payment, payments, credit-card'
+    keywords='safe2pay, pagamento, cartão de crédito, boleto, pix, pagamentos, transações, payment, payments, credit-card'
 )

@@ -13,8 +13,10 @@ def main(arg):
 
     plan = safe2pay.Plan()
     
-    response = plan.DisablePlan("10261")
-    print(f'Retorno DisablePlan: {response.toJSON()}')
+    response = plan.DisablePlan("10590")
+    
+    if (response != 'ok'):
+    	print(f'Retorno DisablePlan: {response.toJSON()}')
 
 
 if __name__ == "__main__":

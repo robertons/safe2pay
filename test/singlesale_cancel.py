@@ -11,7 +11,7 @@ def main(arg):
     safe2pay.Safe2Pay(configuration.token_production, '', True, True)
 
     singleSale = safe2pay.SingleSale()
-    retorno = singleSale.CancelSingleSale("eaf69aafca4d4e01921c356222808c1f")
+    retorno = singleSale.CancelSingleSale("9690aa72a6204c5da78bae281c4da991")
 
     print(retorno.toJSON())
 

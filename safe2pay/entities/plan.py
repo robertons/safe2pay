@@ -85,8 +85,12 @@ class Plan(Safe2PayEntity):
 	def DisablePlan(self, id:str):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
 		response = Patch(f"{route}/{id}/Disable", None, addHeader, typeRoute, self.__module__)
-		plan = PlanResponse(**response)
-		return plan
+
+		if (response != None):
+			plan = PlanResponse(**response)
+			return plan
+		else:
+			return 'ok'
 	
 	def CreateSubscription(self, idPlan:str):
 		addHeader, route, typeRoute = self.FormatRoute(**{})

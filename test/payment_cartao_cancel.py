@@ -10,7 +10,7 @@ from safe2pay.utils import constants
 def main(arg):
     safe2pay.Safe2Pay(configuration.token_production, '', True, True)
 
-    boleto = safe2pay.CreditCard().CancelCredit('58279305','1.23')
+    boleto = safe2pay.CreditCard().CancelCredit('60893938','1')
     
     print(f'Retorno CancelCredit: {boleto.toJSON()}')
 

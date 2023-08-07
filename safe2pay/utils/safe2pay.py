@@ -117,13 +117,15 @@ def ValidateResponse(response):
             if DEBUG:
                 print(f"Response:\n\n {response.text} \n\n")
             return response.text
-    elif response.status_code > 201:
+    elif response.status_code > 204:
         status_code = response.status_code
         try:
             response_json = response.json()
             response_json['date'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             response_json['status'] = status_code
+            return response.json()
         except Exception as e:
+            print("Exceçao: ", e)
             response_json = {
                 "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "status": status_code,
@@ -135,7 +137,8 @@ def ValidateResponse(response):
                     }
                 ]
             }
-        raise Safe2PayException("Safe2Pay Request Error", response_json)
+            return response.text
+        #raise Safe2PayException("Safe2Pay Request Error", response_json)
 
 def DecimalToCents(value) -> int:
     return int(value*100)

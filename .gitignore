@@ -5,6 +5,7 @@
 test/configuration.py
 venv
 env
+publicados
 
 # Packages
 *.egg
