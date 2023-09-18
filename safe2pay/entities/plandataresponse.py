@@ -13,6 +13,9 @@ class PlanDataResponse(Safe2PayEntity):
 		# FIELDS
 		cls.id = String(max=26)
 		cls.idPlan = Int()
+		cls.idSubscription = Int()
+		cls.subscriptionStatusCode = String(max=20)
+		cls.chargeUrl = String(max=100)
 
 		cls.metadata = Dict()
 

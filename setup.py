@@ -9,7 +9,7 @@ with open('requirements.txt') as reqs:
 
 setuptools.setup(
     name='safe2pay',
-    version='0.0.5',
+    version='0.0.9',
     description='SDK Python3 para Integração com Safe2Pay',
     author='Roberto Neves',
     author_email='robertonsilva@gmail.com',

@@ -78,6 +78,7 @@ class ResponseDetail(Safe2PayEntity):
 		cls.Splits = ObjList(context=cls, key='splits', name='Split')
 
 
+		cls.isCancelled = Boolean()
 		cls.IsEnabled = Boolean()
 		cls.IsProcessed = Boolean()
 		cls.InstallmentLimit = Int()

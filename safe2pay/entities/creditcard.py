@@ -28,7 +28,7 @@ class CreditCard(Safe2PayEntity):
 	def CancelCredit(self, idTransaction:str, amount:str):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
 		response = Delete(f"{route}/Cancel/{idTransaction}/{amount}", addHeader, typeRoute)
-		payment = BankSlipResponse(**response)
+		payment = MerchantPaymentResponse(**response)
 		return payment
 	
 	def CaptureCredit(self, idTransaction:str, amount:str):
