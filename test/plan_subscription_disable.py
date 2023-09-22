@@ -13,8 +13,10 @@ def main(arg):
 
     plan = safe2pay.PlanSubscription()
     
-    response = plan.DisableSubscription("10265")
-    print(f'Retorno DisableSubscription: {response.toJSON()}')
+    response = plan.DisableSubscription("93142")
+    
+    if (response != None):
+        print(f'Retorno DisableSubscription: {response.toJSON()}')
 
 
 if __name__ == "__main__":

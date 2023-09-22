@@ -5,6 +5,7 @@ from safe2pay.entities.merchantpayment_response import MerchantPaymentResponse
 from safe2pay.entities.transaction_response import TransactionResponse
 from safe2pay.entities.planresponse import PlanResponse
 from safe2pay.entities.responsedetail import ResponseDetail
+from safe2pay.entities.plansubscriptioncancelresponse import PlanSubscriptionCancelResponse
 
 class PlanSubscription(Safe2PayEntity):
 
@@ -77,8 +78,12 @@ class PlanSubscription(Safe2PayEntity):
 	def DisableSubscription(self, idSubscription:str):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
 		response = Patch(f"{route}/{idSubscription}/Disable", self.toJSON(), addHeader, typeRoute, self.__module__)
-		subscription = PlanResponse(**response)
-		return subscription
+
+		if (response != None):
+			subscription = PlanSubscriptionCancelResponse(**response)
+			return subscription
+		
+		return response
 	
 	def UpdateTokenCard(self, idSubscription:str):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
