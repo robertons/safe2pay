@@ -119,7 +119,7 @@ class ResponseDetail(Safe2PayEntity):
 		cls.AmountCanceled = DecimalS2P(max=15)
 		cls.AmountContestation = DecimalS2P(max=15)
 		cls.AmountTaxes = DecimalS2P(max=15)
-		cls.AmountAvailableTodal = DecimalS2P(max=15)
+		cls.AmountAvailableTotal = DecimalS2P(max=15)
 		cls.AmountPreviewTotal = DecimalS2P(max=15)
 
 		cls.Success = Boolean()

@@ -11,7 +11,7 @@ def main(arg):
     safe2pay.Safe2Pay(configuration.token_production, '', True, True)
 
     bankslip = safe2pay.BankSlip()
-    retorno = bankslip.WriteOffBankSlip(idTransaction="58187161")
+    retorno = bankslip.WriteOffBankSlip(idTransaction="65096961")
 
     print(retorno.toJSON())
 

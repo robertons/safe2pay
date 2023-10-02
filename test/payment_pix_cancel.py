@@ -10,7 +10,7 @@ from safe2pay.utils import constants
 def main(arg):
     safe2pay.Safe2Pay(configuration.token_production, '', True, True)
 
-    boleto = safe2pay.Pix().CancelPix('58279305')
+    boleto = safe2pay.Pix().CancelPix('65097242')
     
     print(f'Retorno CancelPix: {boleto.toJSON()}')
 
