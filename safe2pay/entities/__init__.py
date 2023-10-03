@@ -28,6 +28,7 @@ from .merchantaccount import MerchantAccount
 from .merchantbankdata import MerchantBankData
 from .merchantpayment_response import MerchantPaymentResponse
 from .merchantpayment import MerchantPayment
+from .merchantpaymentdate import MerchantPaymentDate
 from .merchantsplit import MerchantSplit
 from .merchanttype import MerchantType
 from .payment import Payment
@@ -36,6 +37,7 @@ from .paymentobject import PaymentObject
 from .paymentoption import PaymentOption
 from .pix import Pix
 from .plan import Plan
+from .planfrequence import PlanFrequence
 from .plansubscription import PlanSubscription
 from .plandataresponse import PlanDataResponse
 from .planresponse import PlanResponse
