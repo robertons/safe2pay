@@ -12,7 +12,7 @@ def main(arg):
 
     transacao = safe2pay.Transaction()
 
-    retorno = transacao.GetTransaction(58187161)
+    retorno = transacao.GetTransaction(65718579)
     
     print(f'Retorno GetTransaction: {retorno.toJSON()}')
 

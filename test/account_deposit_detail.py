@@ -8,12 +8,16 @@ import safe2pay
 from safe2pay.utils import constants
 
 def main(arg):
-	safe2pay.Safe2Pay(configuration.token_production, '', True, True)
+	# safe2pay.Safe2Pay(configuration.token_production, '', True, True)
+
+	tokenSubconta = '3CBAF4730AD74845B5D6A150E23D15C1'
+	safe2pay.Safe2Pay(tokenSubconta, '', True, True)
+
 
 	depositos = safe2pay.CheckingAccount()
     
-	day = 13
-	month = 7
+	day = 3
+	month = 10
 	year = 2023
 	page = 1
 	rowsPerPage = 50

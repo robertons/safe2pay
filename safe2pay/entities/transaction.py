@@ -3,6 +3,7 @@ from .lib import *
 from safe2pay.entities.merchantpayment_response import MerchantPaymentResponse
 from safe2pay.entities.bankslip_response import BankSlipResponse
 from safe2pay.entities.transaction_response import TransactionResponse
+from safe2pay.entities.transactiongetresponse import TransactionGetResponse
 
 class Transaction(Safe2PayEntity):
 
@@ -56,7 +57,7 @@ class Transaction(Safe2PayEntity):
 	def GetTransaction(self, id:int):
 		addHeader, route, typeRoute = self.FormatRoute(**{})
 		response = Get(f"{route}/Get?Id={id}", None, addHeader, typeRoute)
-		transacao = MerchantPaymentResponse(**response)
+		transacao = TransactionGetResponse(**response)
 		return transacao
 	
 	def GetTransactionByReference(self, reference:str):

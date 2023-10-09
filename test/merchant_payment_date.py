@@ -16,7 +16,7 @@ def main(arg):
 	planFrequence = safe2pay.PlanFrequence()
 	planFrequence.Code = "7" # 1 - mensal, 6 semanal, 7 diário
 	merchantPaymentDate.PlanFrequence = planFrequence
-	#merchantPaymentDate.PaymentDay = 2 # Em caso de frequência semanal, deve ser indicado o dia correspondente da semana, começando pela segunda-feira: 2; até sexta-feira: 6; Caso a frequência for diária, este campo não precisa ser enviado
+	#merchantPaymentDate.PaymentDay = 2 # Em caso de frequência semanal, deve ser indicado o dia correspondente da semana, começando pela segunda-feira: 2; até sexta-feira: 6; Caso a frequência for diária, este campo não precisa ser enviado	
 
 
 	response = merchantPaymentDate.Update()
