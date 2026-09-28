@@ -22,6 +22,12 @@ class Marketplace(Safe2PayEntity):
 		cls.ResponsibleName = String(max=200)
 		cls.ResponsibleIdentity = String(max=11)
 		cls.ResponsiblePhone = String(max=11)
+		# ResponsibleBirthDate e OBRIGATORIO em /v2/Marketplace/Add — a API
+		# recusa a subconta com "A data de nascimento do responsavel da subconta
+		# deve ser informada e valida". O campo faltava nesta entidade, entao
+		# nenhum consumidor da lib tinha como enviar; a criacao de subconta
+		# falhava para todo mundo. Formato ISO 8601 de data: YYYY-MM-DD.
+		cls.ResponsibleBirthDate = String(max=10)
 		cls.Email = String(max=100)
 		cls.TechName = String(max=200)
 		cls.TechIdentity = String(max=11)
